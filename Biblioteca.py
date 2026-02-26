@@ -5,11 +5,13 @@ from libro import Libro
 from Usuario import Usuario
 from CatalogoUsuarios import catalogoUsuarios
 
-libros=[]
+libros={}
 catalogolibros=catalogoLibros(libros)
 
-usuarios=[]
-catalogousuarios=catalogoUsuarios(usuarios)
+usuarios={}
+catalogousuarios=catalogoUsuarios(0,usuarios)
+
+print(catalogousuarios.id)
 
 def menu_principal():
     while True:
@@ -78,16 +80,15 @@ Alta y gestion de usuarios
             case 1:
                 registrarUsuario()
             case 2:
-                catalogoUsuarios.mostrarUsuarios(usuarios)
+                catalogoUsuarios.mostrarUsuarios(catalogousuarios)
             case 3:
                 menuLibros()
             case _:
                 print("Opcion no valida")
             
 def registrarUsuario():
-  id=input("ID:")
   nombre=input("Nombre:")
-  usuario=Usuario(id,nombre)
+  usuario=Usuario(catalogousuarios.id,nombre)
   catalogousuarios.agregar(usuario)
 
 menu_principal()
