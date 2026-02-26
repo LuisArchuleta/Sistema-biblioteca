@@ -1,5 +1,5 @@
 from CatalogoLibros import catalogoLibros 
-from Libro import Libro
+from libro import Libro
 from Usuario import Usuario
 from CatalogoUsuarios import catalogoUsuarios
 from GestionPrestamos import GestionPrestamos

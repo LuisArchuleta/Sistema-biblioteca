@@ -12,8 +12,6 @@ class catalogoLibros:
     def agregar(self,l):
         self.libros[l.isbn] = l
 
-    def __getitem__(self,posicion):
-        return self.libros[posicion]
     
     def __len__(self):
         return len(self.libros)
