@@ -2,6 +2,7 @@ from CatalogoLibros import catalogoLibros
 from Libro import Libro
 from Usuario import Usuario
 from CatalogoUsuarios import catalogoUsuarios
+from GestionPrestamos import GestionPrestamos
 
 libros={}
 catalogolibros=catalogoLibros(libros)
@@ -30,6 +31,13 @@ def menu_principal():
                 menuLibros()
             case 2:
                 menuUsuarios()
+            case 3:
+                menuPrestamosyDevoluciones()
+            case 4: 
+                menuReportesyConsultas()
+            case 5:
+                print("\nSaliste del programa\n")
+                break
             case _:
                 print("Opcion no valida")
                 
@@ -70,6 +78,48 @@ Alta y gestion de usuarios
 ----------------------------
 1.-Registrar usuario
 2.-Consultar usuarios
+3.-Volver
+----------------------------
+        """)
+        opcion=int(input("Opcion: "))
+        match opcion:
+            case 1:
+                registrarUsuario()
+            case 2:
+                catalogoUsuarios.mostrarUsuarios(catalogousuarios)
+            case 3:
+                menuLibros()
+            case _:
+                print("Opcion no valida")
+
+def menuPrestamosyDevoluciones():
+     while True:
+        print("""
+Prestamos y Devoluciones
+----------------------------
+1.-Realizar prestamo
+2.-Realizar devolucion
+3.-Volver
+----------------------------
+        """)
+        opcion=int(input("Opcion: "))
+        match opcion:
+            case 1:
+                realizar_prestamo()
+            case 2:
+                devolver()
+            case 3:
+                menuLibros()
+            case _:
+                print("Opcion no valida")
+
+def menuReportesyConsultas():
+     while True:
+        print("""
+Alta y gestion de usuarios
+----------------------------
+1.-Realizar reporte
+2.-Realizar consulta
 3.-Volver
 ----------------------------
         """)

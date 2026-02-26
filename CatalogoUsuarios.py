@@ -8,10 +8,9 @@ class catalogoUsuarios:
             agregar: Esta funcion se utiliza para...
     """
     
-    def __init__(self,id,usuarios = []):
+    def __init__(self,id,usuarios = {}):
         self.id=id
         self.usuarios = usuarios
-        
     
     def agregar(self,u):
         self.id+=1
