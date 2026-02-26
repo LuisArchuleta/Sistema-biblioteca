@@ -12,10 +12,10 @@ class catalogoLibros:
     def agregar(self,l):
         self.libros[l.isbn] = l
 
-    
-    def __len__(self):
-        return len(self.libros)
-    
+
     def mostrarDisponibilidad(self):
-        for libro in self.libros.values():
-            print(f"Libro: {libro.titulo} Ejemplares disponibles: {libro.n_ejemplares}")
+        if len(self.libros)==0:
+            print("No hay libros registrados")
+        else:
+            for libro in self.libros.values():
+                print(f"Libro: {libro.titulo} Ejemplares disponibles: {libro.n_ejemplares}")
