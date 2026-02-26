@@ -9,7 +9,7 @@ class Menulibros:
     print("""
 Alta y gestion de libros
 ----------------------------
-1.Registrar libro
+1.-Registrar libro
 2.-Consultar disponibilidad
 3.-Buscar por titulo o autor
 4.-Volver
@@ -17,4 +17,14 @@ Alta y gestion de libros
     """)
 
 def crearLibros():
-  
+    print("\n--- Registro de Nuevo Libro ---")
+    isbn = input("Ingrese ISBN: ")
+    titulo = input("Ingrese Título: ")
+    autor = input("Ingrese Autor: ")
+    n_ejemplares = int(input("Número de ejemplares: "))
+    
+    nuevo_libro = Libro(isbn, titulo, autor, n_ejemplares)
+    
+    catalogoLibros.agregar(nuevo_libro)
+    
+    print(f"Se ha añadido el libro '{titulo}' al catálogo.")  
