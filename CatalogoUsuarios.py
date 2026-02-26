@@ -19,6 +19,6 @@ class catalogoUsuarios:
         return len(self.usuarios)
     
     def mostrarUsuarios(self):
-        for usuario in self.usuarios.values():
+        for usuario in self.usuarios:
             print(f"Id: {usuario.id} Nombre: {usuario.nombre}")
             
