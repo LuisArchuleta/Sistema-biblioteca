@@ -6,12 +6,11 @@ class catalogoLibros:
             agregar: Esta funcion se utiliza para...
     """
 
-    libros=[]#Creamos una lista vacia
-    def __init__(self,libros=[]):
+    def __init__(self,libros = {}):
         self.libros=libros
     
     def agregar(self,l):
-        self.libros.append(l)
+        self.libros[l.isbn] = l
 
     def __getitem__(self,posicion):
         return self.libros[posicion]
@@ -20,5 +19,5 @@ class catalogoLibros:
         return len(self.libros)
     
     def mostrarDisponibilidad(self):
-        for libro in self.libros:
+        for libro in self.libros.values():
             print(f"Libro: {libro.titulo} Ejemplares disponibles: {libro.n_ejemplares}")

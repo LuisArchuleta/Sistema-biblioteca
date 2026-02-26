@@ -6,12 +6,11 @@ class catalogoUsuarios:
             agregar: Esta funcion se utiliza para...
     """
 
-    usuarios=[]#Creamos una lista vacia
-    def __init__(self,usuarios=[]):
-        self.usuarios=usuarios
+    def __init__(self,usuarios = {}):
+        self.usuarios = usuarios
     
     def agregar(self,u):
-        self.usuarios.append(u)
+        self.usuarios[u.id] = u
 
     def __getitem__(self,usuario):
         return self.usuarios[usuario]
@@ -20,6 +19,6 @@ class catalogoUsuarios:
         return len(self.usuarios)
     
     def mostrarUsuarios(self):
-        for usuario in self.usuarios:
+        for usuario in self.usuarios.values():
             print(f"Id: {usuario.id} Nombre: {usuario.nombre}")
             
