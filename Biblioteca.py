@@ -1,7 +1,5 @@
-#Ventana
-
 from CatalogoLibros import catalogoLibros 
-from libro import Libro
+from Libro import Libro
 from Usuario import Usuario
 from CatalogoUsuarios import catalogoUsuarios
 
