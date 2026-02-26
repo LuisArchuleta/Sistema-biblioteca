@@ -1,5 +1,5 @@
 from CatalogoLibros import catalogoLibros 
-from libro import Libro
+from Libro import Libro
 from Usuario import Usuario
 from CatalogoUsuarios import catalogoUsuarios
 from GestionPrestamos import GestionPrestamos
@@ -9,8 +9,6 @@ catalogolibros=catalogoLibros(libros)
 
 usuarios={}
 catalogousuarios=catalogoUsuarios(0,usuarios)
-
-print(catalogousuarios.id)
 
 def menu_principal():
     while True:

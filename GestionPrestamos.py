@@ -35,7 +35,7 @@ class GestionPrestamos:
         self.prestamos.append(registro)
         
         # Actualizar datos
-        int(libro.n_ejemplares) -= 1
+        libro.n_ejemplares = int(libro.n_ejemplares) - 1
         libro.veces_prestado += 1
 
         return f"Se realizo el prestamo {libro.titulo} a {usuario.nombre}"
