@@ -1,35 +1,56 @@
-import tkinter as tk
-from VentanaLibros import VentanaLibros
-from CatalogoLibros import catalogoLibros
-catalogo=catalogoLibros(libros=[])
-ventanaMenu=tk.Tk()
+#Ventana
+
+from CatalogoLibros import catalogoLibros 
+from libro import Libro
+
+libros=[]
+catalogolibros=catalogoLibros(libros)
+
+def menu_principal():
+    while True:
+        print("""
+    SISTEMA BIBLIOTECARIO
+----------------------------
+1.-Alta y gestion de libros
+2.-Registro de usuarios
+3.-Prestamos y devoluciones
+4.-Reportes y consultas
+5.-Salir
+----------------------------
+    """)
+        
+        opcion=int(input("Opcion"))
+        match opcion:
+            case 1:
+                menuLibros()
+            case _:
+                print("Opcion no valida")
+                
+def menuLibros():
+    while True:
+        print("""
+Alta y gestion de libros
+----------------------------
+1.-Registrar libro
+2.-Consultar disponibilidad
+3.-Buscar por titulo o autor
+4.-Volver
+----------------------------
+        """)
+        opcion=int(input("Opcion:"))
+        match opcion:
+            case 1:
+                crearLibros()
+            case _:
+                print("Opcion no valida")
 
 
-ventanaMenu.title("Ventana")
-ancho=ventanaMenu.winfo_screenwidth()
-largo=ventanaMenu.winfo_screenheight()
+def crearLibros():
+  isbn=input("ISBN:")
+  titulo=input("Titulo:")
+  autor=input("Autor:")
+  n_ejemplares=input("Numero de ejemplares:")
+  libro=Libro(isbn,titulo,autor,n_ejemplares)
+  catalogolibros.agregar(libro)
 
-ventanalibros=VentanaLibros(largo,ancho,ventanaMenu,catalogo)
-
-ventanaMenu.geometry(f"{ancho}x{largo}+0+0")
-
-etiqueta =tk.Label(ventanaMenu,text="Sistema bibliotecario")
-etiqueta.pack(pady=20)
-
-botonGestionar= tk.Button(ventanaMenu,text="Gestionar libros",command=ventanalibros.abrirVentana)
-botonGestionar.pack(pady=20)
-
-
-botonRegistrar= tk.Button(ventanaMenu,text="Registrar Usuarios")
-botonRegistrar.pack(pady=20)
-
-botonPrestDev= tk.Button(ventanaMenu,text="Prestamos y devoluciones")
-botonPrestDev.pack(pady=20)
-
-botonReportes=tk.Button(ventanaMenu,text="Realizar reportes o consultas")
-botonReportes.pack(pady=20)
-ventanaMenu.mainloop()
-
-for l in catalogo:
-    print(l)
-
+menu_principal()
