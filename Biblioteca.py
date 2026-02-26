@@ -1,7 +1,5 @@
-#Ventana
-
 from CatalogoLibros import catalogoLibros 
-from libro import Libro
+from Libro import Libro
 from Usuario import Usuario
 from CatalogoUsuarios import catalogoUsuarios
 
@@ -26,7 +24,7 @@ def menu_principal():
 ----------------------------
     """)
         
-        opcion=int(input("Opcion"))
+        opcion=int(input("Opcion: "))
         match opcion:
             case 1:
                 menuLibros()
@@ -46,7 +44,7 @@ Alta y gestion de libros
 4.-Volver
 ----------------------------
         """)
-        opcion=int(input("Opcion:"))
+        opcion=int(input("Opcion: "))
         match opcion:
             case 1:
                 crearLibros()
@@ -91,4 +89,5 @@ def registrarUsuario():
   usuario=Usuario(catalogousuarios.id,nombre)
   catalogousuarios.agregar(usuario)
 
-menu_principal()
+if __name__ == "__main__":
+    menu_principal()
