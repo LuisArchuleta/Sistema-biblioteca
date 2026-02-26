@@ -1,5 +1,3 @@
-
-
 class catalogoUsuarios:
     """Clase catalogoUsuarios: Para crear una coleccion de Usuarios
     Input: recibe objetos tipo Usuario
@@ -21,5 +19,5 @@ class catalogoUsuarios:
     
     def mostrarUsuarios(self):
         for usuario in self.usuarios.values():
-            print(f"Id: {self.id} Nombre: {usuario.nombre}")
+            print(f"Id: {usuario.id} Nombre: {usuario.nombre}")
             

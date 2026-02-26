@@ -14,8 +14,21 @@ class catalogoLibros:
 
 
     def mostrarDisponibilidad(self):
+<<<<<<< HEAD
         if len(self.libros)==0:
             print("No hay libros registrados")
         else:
             for libro in self.libros.values():
                 print(f"Libro: {libro.titulo} Ejemplares disponibles: {libro.n_ejemplares}")
+=======
+        for libro in self.libros.values():
+            print(f"Libro: {libro.titulo} Ejemplares disponibles: {libro.n_ejemplares}")
+
+    def top_3_libros(self):
+        libros_ordenados = sorted(self.libros.values(), key=lambda x: x.veces_prestado, reverse=True)
+        return libros_ordenados[:3]
+    
+    def buscar_por_autor(self, autor):
+        encontrados = [l for l in self.libros.values() if l.autor.lower() == autor.lower()]
+        return encontrados
+>>>>>>> f1574a759c515451b396a407025bd9baeb086692

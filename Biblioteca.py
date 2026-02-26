@@ -10,6 +10,8 @@ catalogolibros=catalogoLibros(libros)
 usuarios={}
 catalogousuarios=catalogoUsuarios(0,usuarios)
 
+gestionPrestamos = GestionPrestamos()
+
 def menu_principal():
     while True:
         print("""
@@ -19,7 +21,7 @@ def menu_principal():
 2.-Registro de usuarios
 3.-Prestamos y devoluciones
 4.-Reportes y consultas
-5.-Salir
+5.-Salir del programa
 ----------------------------
     """)
         
@@ -56,17 +58,18 @@ Alta y gestion de libros
                 crearLibros()
             case 2:
                 catalogoLibros.mostrarDisponibilidad(catalogolibros)
+            case 4:
+                break
             case _:
                 print("Opcion no valida")
             
 
-
 def crearLibros():
-  isbn=input("ISBN:")
-  titulo=input("Titulo:")
-  autor=input("Autor:")
-  n_ejemplares=input("Numero de ejemplares:")
-  libro=Libro(isbn,titulo,autor,n_ejemplares)
+  isbn = input("ISBN: ")
+  titulo = input("Titulo: ")
+  autor = input("Autor: ")
+  n_ejemplares = input("Numero de ejemplares: ")
+  libro = Libro(isbn,titulo,autor,n_ejemplares)
   catalogolibros.agregar(libro)
 
 def menuUsuarios():
@@ -86,9 +89,14 @@ Alta y gestion de usuarios
             case 2:
                 catalogoUsuarios.mostrarUsuarios(catalogousuarios)
             case 3:
-                menu_principal()
+                break
             case _:
                 print("Opcion no valida")
+
+def registrarUsuario():
+  nombre = input("Nombre: ")
+  usuario = Usuario(catalogousuarios.id,nombre)
+  catalogousuarios.agregar(usuario)
 
 def menuPrestamosyDevoluciones():
      while True:
@@ -107,35 +115,58 @@ Prestamos y Devoluciones
             case 2:
                 devolver()
             case 3:
-                menuLibros()
+                break
             case _:
                 print("Opcion no valida")
+
+def realizar_prestamo():
+    print("\n--- Realizar Préstamo ---")
+    isbn = input("Ingrese el ISBN del libro: ")
+    id_usuario = int(input("Ingrese el ID del usuario: "))    
+    resultado = gestionPrestamos.realizar_prestamo(isbn, id_usuario, catalogolibros, catalogousuarios)
+    print(f"\n{resultado}")
+
+def devolver():
+    print("\n--- Realizar Devolución ---")
+    isbn = input("Ingrese el ISBN del libro: ")
+    id_usuario = int(input("Ingrese el ID del usuario: "))
+    resultado = gestionPrestamos.devolver(isbn, id_usuario, catalogolibros)
+    print(f"\n{resultado}")
 
 def menuReportesyConsultas():
      while True:
         print("""
-Alta y gestion de usuarios
+Reportes y Consultas
 ----------------------------
-1.-Realizar reporte
-2.-Realizar consulta
-3.-Volver
+1.-Top 3 de libros más prestados
+2.-Listado de prestamos activos
+3.-Consultas de libros por autor
+4.-Volver
 ----------------------------
         """)
-        opcion=int(input("Opcion:"))
+        opcion=int(input("Opcion: "))
         match opcion:
             case 1:
-                registrarUsuario()
+                tops = catalogoLibros.top3_libros()
+                for i, libro in enumerate(tops, 1):
+                   print(f"{i}. {libro.titulo} ({libro.veces_prestado} veces)")
             case 2:
-                catalogoUsuarios.mostrarUsuarios(catalogousuarios)
-            case 3:
-                menuLibros()
+                gestionPrestamos.mostrar_prestamos_activos()
+            case 3: 
+                libros_por_autor()
+            case 4:
+                break
             case _:
                 print("Opcion no valida")
-            
-def registrarUsuario():
-  nombre=input("Nombre:")
-  usuario=Usuario(catalogousuarios.id,nombre)
-  catalogousuarios.agregar(usuario)
+
+def libros_por_autor():
+    autor = input("\nEscriba el nombre del autor: ")
+    resultados = catalogolibros.buscar_por_autor(autor)
+    if resultados:
+        for l in resultados:
+            print(f"\nTítulo: {l.titulo} | ISBN: {l.isbn} | Disponibles: {l.n_ejemplares}")
+    else:
+        print("No se encontraron libros de ese autor.")
 
 if __name__ == "__main__":
     menu_principal()
