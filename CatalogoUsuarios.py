@@ -19,5 +19,5 @@ class catalogoUsuarios:
     
     def mostrarUsuarios(self):
         for usuario in self.usuarios.values():
-            print(f"Id: {self.id} Nombre: {usuario.nombre}")
+            print(f"Id: {usuario.id} Nombre: {usuario.nombre}")
             

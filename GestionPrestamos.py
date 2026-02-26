@@ -47,3 +47,11 @@ class GestionPrestamos:
                 catalogo_l.libros[isbn].n_ejemplares = int(catalogo_l.libros[isbn].n_ejemplares) + 1
                 return "Devolución exitosa."
         return "No se encontró el préstamo."
+    
+    def mostrar_prestamos_activos(self):
+        if not self.prestamos:
+            print("No hay préstamos activos en este momento.")
+        else:
+            print("\n--- Listado de Préstamos Activos ---")
+            for p in self.prestamos:
+                print(f"ISBN: {p[0]} | Usuario ID: {p[1]} | Fecha: {p[2]}")
