@@ -38,12 +38,12 @@ class GestionPrestamos:
         libro.n_ejemplares = int(libro.n_ejemplares) - 1
         libro.veces_prestado += 1
 
-        return f"Se realizo el prestamo {libro.titulo} a {usuario.nombre}"
+        return f"Se realizo el prestamo del libro {libro.titulo} a {usuario.nombre}"
 
     def devolver(self, isbn, id_usuario, catalogo_l):
         for i, p in enumerate(self.prestamos):
             if p[0] == isbn and p[1] == id_usuario:
                 self.prestamos.pop(i)
-                catalogo_l.libros[isbn].n_ejemplares += 1
+                catalogo_l.libros[isbn].n_ejemplares = int(catalogo_l.libros[isbn].n_ejemplares) + 1
                 return "Devolución exitosa."
         return "No se encontró el préstamo."

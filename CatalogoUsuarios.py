@@ -1,5 +1,3 @@
-
-
 class catalogoUsuarios:
     """Clase catalogoUsuarios: Para crear una coleccion de Usuarios
     Input: recibe objetos tipo Usuario

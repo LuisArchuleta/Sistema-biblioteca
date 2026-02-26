@@ -10,6 +10,8 @@ catalogolibros=catalogoLibros(libros)
 usuarios={}
 catalogousuarios=catalogoUsuarios(0,usuarios)
 
+gestionPrestamos = GestionPrestamos()
+
 def menu_principal():
     while True:
         print("""
@@ -56,17 +58,18 @@ Alta y gestion de libros
                 crearLibros()
             case 2:
                 catalogoLibros.mostrarDisponibilidad(catalogolibros)
+            case 4:
+                break
             case _:
                 print("Opcion no valida")
             
 
-
 def crearLibros():
-  isbn=input("ISBN:")
-  titulo=input("Titulo:")
-  autor=input("Autor:")
-  n_ejemplares=input("Numero de ejemplares:")
-  libro=Libro(isbn,titulo,autor,n_ejemplares)
+  isbn = input("ISBN: ")
+  titulo = input("Titulo: ")
+  autor = input("Autor: ")
+  n_ejemplares = input("Numero de ejemplares: ")
+  libro = Libro(isbn,titulo,autor,n_ejemplares)
   catalogolibros.agregar(libro)
 
 def menuUsuarios():
@@ -86,9 +89,14 @@ Alta y gestion de usuarios
             case 2:
                 catalogoUsuarios.mostrarUsuarios(catalogousuarios)
             case 3:
-                menuLibros()
+                break
             case _:
                 print("Opcion no valida")
+
+def registrarUsuario():
+  nombre = input("Nombre: ")
+  usuario = Usuario(catalogousuarios.id,nombre)
+  catalogousuarios.agregar(usuario)
 
 def menuPrestamosyDevoluciones():
      while True:
@@ -107,9 +115,23 @@ Prestamos y Devoluciones
             case 2:
                 devolver()
             case 3:
-                menuLibros()
+                break
             case _:
                 print("Opcion no valida")
+
+def realizar_prestamo():
+    print("\n--- Realizar Préstamo ---")
+    isbn = input("Ingrese el ISBN del libro: ")
+    id_usuario = int(input("Ingrese el ID del usuario: "))    
+    resultado = gestionPrestamos.realizar_prestamo(isbn, id_usuario, catalogolibros, catalogousuarios)
+    print(f"\n{resultado}")
+
+def devolver():
+    print("\n--- Realizar Devolución ---")
+    isbn = input("Ingrese el ISBN del libro: ")
+    id_usuario = int(input("Ingrese el ID del usuario: "))
+    resultado = gestionPrestamos.devolver(isbn, id_usuario, catalogolibros)
+    print(f"\n{resultado}")
 
 def menuReportesyConsultas():
      while True:
@@ -128,14 +150,10 @@ Alta y gestion de usuarios
             case 2:
                 catalogoUsuarios.mostrarUsuarios(catalogousuarios)
             case 3:
-                menuLibros()
+                break
             case _:
                 print("Opcion no valida")
             
-def registrarUsuario():
-  nombre=input("Nombre:")
-  usuario=Usuario(catalogousuarios.id,nombre)
-  catalogousuarios.agregar(usuario)
 
 if __name__ == "__main__":
     menu_principal()

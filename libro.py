@@ -4,6 +4,7 @@ class Libro:
         self.titulo = titulo
         self.autor = autor
         self.n_ejemplares = int(n_ejemplares)
-        print("Se ha creado el libro",self.titulo)    
+        self.veces_prestado = 0
+        print("\nSe ha creado el libro",self.titulo)    
     
     
