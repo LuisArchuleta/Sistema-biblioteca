@@ -2,9 +2,14 @@
 
 from CatalogoLibros import catalogoLibros 
 from libro import Libro
+from Usuario import Usuario
+from CatalogoUsuarios import catalogoUsuarios
 
 libros=[]
 catalogolibros=catalogoLibros(libros)
+
+usuarios=[]
+catalogousuarios=catalogoUsuarios(usuarios)
 
 def menu_principal():
     while True:
@@ -23,6 +28,8 @@ def menu_principal():
         match opcion:
             case 1:
                 menuLibros()
+            case 2:
+                menuUsuarios()
             case _:
                 print("Opcion no valida")
                 
@@ -41,8 +48,11 @@ Alta y gestion de libros
         match opcion:
             case 1:
                 crearLibros()
+            case 2:
+                catalogoLibros.mostrarDisponibilidad(catalogolibros)
             case _:
                 print("Opcion no valida")
+            
 
 
 def crearLibros():
@@ -52,5 +62,32 @@ def crearLibros():
   n_ejemplares=input("Numero de ejemplares:")
   libro=Libro(isbn,titulo,autor,n_ejemplares)
   catalogolibros.agregar(libro)
+
+def menuUsuarios():
+    while True:
+        print("""
+Alta y gestion de usuarios
+----------------------------
+1.-Registrar usuario
+2.-Consultar usuarios
+3.-Volver
+----------------------------
+        """)
+        opcion=int(input("Opcion:"))
+        match opcion:
+            case 1:
+                registrarUsuario()
+            case 2:
+                catalogoUsuarios.mostrarUsuarios(usuarios)
+            case 3:
+                menuLibros()
+            case _:
+                print("Opcion no valida")
+            
+def registrarUsuario():
+  id=input("ID:")
+  nombre=input("Nombre:")
+  usuario=Usuario(id,nombre)
+  catalogousuarios.agregar(usuario)
 
 menu_principal()

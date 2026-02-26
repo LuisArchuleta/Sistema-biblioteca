@@ -11,11 +11,15 @@ class catalogoUsuarios:
         self.usuarios=usuarios
     
     def agregar(self,u):
-        self.libros.append(u)
+        self.usuarios.append(u)
 
     def __getitem__(self,usuario):
-        return self.libros[usuario]
+        return self.usuarios[usuario]
     
     def __len__(self):
         return len(self.usuarios)
+    
+    def mostrarUsuarios(self):
+        for usuario in self.usuarios:
+            print(f"Id: {usuario.id} Nombre: {usuario.nombre}")
             

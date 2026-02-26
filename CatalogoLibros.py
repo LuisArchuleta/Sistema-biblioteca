@@ -18,4 +18,7 @@ class catalogoLibros:
     
     def __len__(self):
         return len(self.libros)
-            
+    
+    def mostrarDisponibilidad(self):
+        for libro in self.libros:
+            print(f"Libro: {libro.titulo} Ejemplares disponibles: {libro.n_ejemplares}")

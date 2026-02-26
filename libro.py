@@ -6,3 +6,4 @@ class Libro:
         self.n_ejemplares=n_ejemplares
         print("Se ha creado el libro",self.titulo)    
     
+    
