@@ -23,5 +23,6 @@ class catalogoUsuarios:
         return len(self.usuarios)
     
     def mostrarUsuarios(self):
-        for usuario in self.usuarios.values(): #Recorre el diccionario usuarios.
-            print(f"Id: {usuario.id} Nombre: {usuario.nombre}")
+        for usuario in self.usuarios.values():
+            print(usuario)
+            print(f"\nId: {usuario.id} Nombre: {usuario.nombre}")
