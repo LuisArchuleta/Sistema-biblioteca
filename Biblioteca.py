@@ -137,8 +137,16 @@ Prestamos y Devoluciones
 
 def realizar_prestamo():
     print("\n--- Realizar Préstamo ---")
-    isbn = input("Ingrese el ISBN del libro: ")
-    id_usuario = int(input("Ingrese el ID del usuario: "))    
+    while True:
+        isbn = input("Ingrese el ISBN del libro: ")
+        if isbn.isdigit():
+            break
+        else: print("El ISBN esta compuesto solo de digitos")
+    while True:
+        id_usuario = input("Ingrese el ID del usuario: ")    
+        if id_usuario.isdigit():
+            break
+        else: print("El id solo admite digitos")
     resultado = gestionPrestamos.realizar_prestamo(isbn, id_usuario, catalogolibros, catalogousuarios)
     print(f"\n{resultado}")
 

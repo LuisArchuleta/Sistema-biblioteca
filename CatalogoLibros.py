@@ -23,10 +23,20 @@ class catalogoLibros:
                 print(f"Libro: {libro.titulo} Ejemplares disponibles: {libro.n_ejemplares}")
     
     def crearLibros(self):
-        isbn = input("ISBN: ")
+        while True:
+            isbn = input("ISBN: ")
+            if isbn.isdigit():
+                break
+            else:
+                print("El ISBN esta compuesto solo de digitos")
         titulo = input("Titulo: ")
         autor = input("Autor: ")
-        n_ejemplares = input("Numero de ejemplares: ")
+        while True:
+            n_ejemplares = input("Numero de ejemplares: ")
+            if n_ejemplares.isdigit():
+                break
+            else:
+                print("Solo se aceptan numeros")
         libro = Libro(isbn,titulo,autor,n_ejemplares)
         self.agregar(libro)
 
