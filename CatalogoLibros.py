@@ -40,7 +40,6 @@ class catalogoLibros:
         libro = Libro(isbn,titulo,autor,n_ejemplares)
         self.agregar(libro)
 
-
     def top_3_libros(self):
         libros_ordenados = sorted(self.libros.values(), key=lambda x: x.veces_prestado, reverse=True)
         return libros_ordenados[:3]

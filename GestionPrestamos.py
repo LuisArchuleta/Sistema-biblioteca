@@ -1,8 +1,11 @@
 import datetime
 
 class GestionPrestamos:
-    def __init__(self, prestamos = []):
-        self.prestamos = prestamos 
+    def __init__(self, prestamos = None):
+        if prestamos is None:
+            self.prestamos = []
+        else:
+            self.prestamos = prestamos
 
     def realizar_prestamo(self, isbn, id_usuario, catalogo_l, catalogo_u):
         libro = catalogo_l.libros.get(isbn)
@@ -17,17 +20,17 @@ class GestionPrestamos:
 
         # Contar préstamos actuales del usuario
         prestamos_del_usuario = 0
-        for p in self.prestamos:
-            if p[1] == id_usuario:
+        for _, id_u_p, _ in self.prestamos:
+            if id_u_p == id_usuario:
                 prestamos_del_usuario += 1
 
         if prestamos_del_usuario >= 3:
-            return "El usuario ya tiene el máximo de 3 libros."
+            return "El usuario {usuario.nombre} ya tiene el máximo de 3 libros."
 
         # Validar duplicado
-        for p in self.prestamos:
-            if p[0] == isbn and p[1] == id_usuario:
-                return "Ya tiene este libro prestado."
+        for isbn_p, id_u_p, _ in self.prestamos:
+            if isbn_p == isbn and id_u_p == id_usuario:
+                return "El usuariop ya cuenta con este libro en préstamo."
 
         # Registro de prestamo
         fecha = str(datetime.date.today())
@@ -41,17 +44,19 @@ class GestionPrestamos:
         return f"Se realizo el prestamo del libro {libro.titulo} a {usuario.nombre}"
 
     def devolver(self, isbn, id_usuario, catalogo_l):
-        for i, p in enumerate(self.prestamos):
-            if p[0] == isbn and p[1] == id_usuario:
+        for i, (isbn_p, id_u_p, fecha_p) in enumerate(self.prestamos):
+            if isbn_p == isbn and id_u_p == id_usuario:
                 self.prestamos.pop(i)
-                catalogo_l.libros[isbn].n_ejemplares = int(catalogo_l.libros[isbn].n_ejemplares) + 1
+                libro = catalogo_l.libros.get(isbn)
+                if libro:
+                    libro.n_ejemplares = int(libro.n_ejemplares) + 1
                 return "Devolución exitosa."
-        return "No se encontró el préstamo."
+        return "No se encontró un préstamo activo con estos datos."
     
     def mostrar_prestamos_activos(self):
         if not self.prestamos:
             print("No hay préstamos activos en este momento.")
         else:
             print("\n--- Listado de Préstamos Activos ---")
-            for p in self.prestamos:
-                print(f"ISBN: {p[0]} | Usuario ID: {p[1]} | Fecha: {p[2]}")
+            for isbn, id_u, fecha in self.prestamos:
+                print(f"ISBN: {isbn:<15} | Usuario ID: {id_u:<10} | Fecha: {fecha:<12}")

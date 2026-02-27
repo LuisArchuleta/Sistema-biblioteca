@@ -57,6 +57,7 @@ Alta y gestion de libros
             case 1:
                 catalogoLibros.crearLibros(catalogolibros)
             case 2:
+                print("")
                 catalogoLibros.mostrarDisponibilidad(catalogolibros)
             case 3:
                 menuBuscar()
@@ -103,6 +104,7 @@ Alta y gestion de usuarios
             case 1:
                 registrarUsuario()
             case 2:
+                print("")
                 catalogoUsuarios.mostrarUsuarios(catalogousuarios)
             case 3:
                 break
@@ -110,7 +112,7 @@ Alta y gestion de usuarios
                 print("Opcion no valida")
 
 def registrarUsuario():
-  nombre = input("Nombre: ")
+  nombre = input("\nNombre: ")
   usuario = Usuario(catalogousuarios.id,nombre)
   catalogousuarios.agregar(usuario)
 
@@ -154,9 +156,14 @@ def realizar_prestamo():
 def devolver():
     print("\n--- Realizar Devolución ---")
     isbn = input("Ingrese el ISBN del libro: ")
-    id_usuario = int(input("Ingrese el ID del usuario: "))
-    resultado = gestionPrestamos.devolver(isbn, id_usuario, catalogolibros)
-    print(f"\n{resultado}")
+    id_usuario = input("Ingrese el ID del usuario: ")
+
+    if id_usuario.isdigit():
+        id_usuario = int(id_usuario)
+        resultado = gestionPrestamos.devolver(isbn, id_usuario, catalogolibros)
+        print(f"\n{resultado}")
+    else:
+        print("\nError: ID de usuario no válido.")
 
 def menuReportesyConsultas():
      while True:
