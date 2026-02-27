@@ -47,7 +47,7 @@ class GestionPrestamos:
 
         # Si el usuario ya tiene 3 libros prestados, se rechaza la operación.
         if prestamos_del_usuario >= 3:
-            return "El usuario {usuario.nombre} ya tiene el máximo de 3 libros."
+            return f"El usuario {usuario.nombre} ya tiene el máximo de 3 libros."
 
         # Evitar que el usuario pida prestado dos veces el mismo libro.
         for isbn_p, id_u_p, _ in self.prestamos:

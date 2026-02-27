@@ -55,6 +55,7 @@ Alta y gestion de libros
         opcion=int(input("Opcion: "))
         match opcion:
             case 1:
+                print("")
                 catalogoLibros.crearLibros(catalogolibros)
             case 2:
                 print("")
@@ -77,7 +78,7 @@ Buscar libro
 3.-Volver
 ----------------------------
     """)
-        opcion=int(input("Opcion:"))
+        opcion=int(input("Opcion: "))
         match opcion:
             case 1:
                 catalogoLibros.libros_por_titulo(catalogolibros)

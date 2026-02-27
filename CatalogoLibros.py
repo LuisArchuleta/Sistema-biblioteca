@@ -30,7 +30,7 @@ class catalogoLibros:
             print("No hay libros registrados")
         else:
             for libro in self.libros.values():
-                print(f"Libro: {libro.titulo} Ejemplares disponibles: {libro.n_ejemplares}")
+                print(f"Libro: {libro.titulo:<25} | Ejemplares disponibles: {libro.n_ejemplares:<15}")
     
     def crearLibros(self):
         while True:
@@ -72,8 +72,9 @@ class catalogoLibros:
         autor = input("\nEscriba el nombre del autor: ")
         resultados = self.buscar_por_autor(autor)
         if resultados:
+            print("")
             for l in resultados: #lista de libros encontrados
-                print(f"\nTítulo: {l.titulo} | ISBN: {l.isbn} | Disponibles: {l.n_ejemplares}")
+                print(f"Título: {l.titulo: <30} | ISBN: {l.isbn: <15} | Disponibles: {l.n_ejemplares}")
         else:
             print("No se encontraron libros de ese autor.")
 
@@ -81,7 +82,8 @@ class catalogoLibros:
         titulo = input("\nEscriba el titulo del libro: ")
         resultados = self.buscar_por_titulo(titulo)
         if resultados:
+            print("")
             for l in resultados:
-                print(f"\nTítulo: {l.titulo} | ISBN: {l.isbn} | Disponibles: {l.n_ejemplares}")
+                print(f"Título: {l.titulo: <30} | ISBN: {l.isbn: <15} | Disponibles: {l.n_ejemplares}")
         else:
             print("No se encontro el libro.")
