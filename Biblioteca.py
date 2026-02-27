@@ -145,6 +145,7 @@ def realizar_prestamo():
     while True:
         id_usuario = input("Ingrese el ID del usuario: ")    
         if id_usuario.isdigit():
+            id_usuario = int(id_usuario)
             break
         else: print("El id solo admite digitos")
     resultado = gestionPrestamos.realizar_prestamo(isbn, id_usuario, catalogolibros, catalogousuarios)
