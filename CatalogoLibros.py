@@ -1,18 +1,28 @@
 from Libro import Libro
 
 class catalogoLibros:
-    """Clase catalogoLibros: Para crear una coleccion de libros
+    """Clase catalogoLibros: Para crear un diccionario de libros y manejar consultas de libros
     Input: recibe objetos tipo libros
-    outuput:None
+    outuput: 
+            top_3_libros: Diccionario con los 3 libros mas prestados
+            buscar_por_autor: Una lista de libros.
     Functions:
-            agregar: Esta funcion se utiliza para...
+            __init__: Funcion de inicio. Recibe su propio objeto y un diccionario.
+            agregar: Funcion para agregar objetos tipo libro al diccionario. Recibe su propio objeto y un objeto tipo usuario.
+            mostrarDisponibilidad: Funcion que recorre el diccionario de libros para imprimir los parametros titulo y ejemplares del objeto libro, si el diccionario esta vacio imprima no hay libros registrados. Recibe su propio objeto.
+            crearLibros: Funcion para crear un objeto libro y agregarlo al diccionario. Recibe su propio objeto.
+            top_3_libros: Funcion que ordena el diccionario de mayor a menor en base a la cantidad de veces que se ha prestado el libro. Recibe su propio objeto.
+            buscar_por_autor: Funcion que crea una lista con los libros encontrados segun el autor dado. Recibe su propio objeto y el autor a buscar.
+            buscar_por_titulo: Funcion que crea una lista con los libros encontrados segun el titulo dado. Recibe su propio objeto y el titulo a buscar.
+            libros_por_autor: Funcion que pide al usuario un autor para buscar libros, llama a funcion buscar_por_autor el cual devuelve una lista, imprime la lista de libros encontrados. Recibe su propio objeto.
+            libros_por_titulo: Funcion que pide al usuario un titulo para buscar libros, llama a funcion buscar_por_titulo el cual devuelve una lista, imprime la lista de libros encontrados. Recibe su propio objeto.
     """
 
     def __init__(self,libros = {}):
         self.libros=libros
     
     def agregar(self,l):
-        self.libros[l.isbn] = l
+        self.libros[l.isbn] = l #Diccionario libros, isbn: libro {TITULO, AUTOR, N_EJEMPLARES }
 
 
     def mostrarDisponibilidad(self):
@@ -42,20 +52,20 @@ class catalogoLibros:
 
 
     def top_3_libros(self):
-        libros_ordenados = sorted(self.libros.values(), key=lambda x: x.veces_prestado, reverse=True)
-        return libros_ordenados[:3]
+        libros_ordenados = sorted(self.libros.values(), key=lambda x: x.veces_prestado, reverse=True) #Ordena el diccionario de mayor a menor segun la cantidad de prestamos
+        return libros_ordenados[:3] #Devuelve los primeros 3 
     
     def buscar_por_autor(self, autor):
-        encontrados = []
-        for l in self.libros.values():
-            if l.autor.lower() == autor.lower():
-                encontrados.append(l)
-        return encontrados
+        encontrados = [] #Lista con los libros encontrados
+        for l in self.libros.values(): #Recorre el diccionario de libros
+            if l.autor.lower() == autor.lower(): #Si el autor dado coincide con el parametro autor del libro
+                encontrados.append(l) #Se agrega a la lista de encontrados
+        return encontrados 
     
     def buscar_por_titulo(self, titulo):
-        encontrados = []
+        encontrados = [] 
         for l in self.libros.values():
-            if l.titulo.lower() == titulo.lower():
+            if l.titulo.lower() == titulo.lower(): #Si el titulo dado coincide con el parametro titudlo del libro
                 encontrados.append(l)
         return encontrados
 
@@ -63,7 +73,7 @@ class catalogoLibros:
         autor = input("\nEscriba el nombre del autor: ")
         resultados = self.buscar_por_autor(autor)
         if resultados:
-            for l in resultados:
+            for l in resultados: #lista de libros encontrados
                 print(f"\nTítulo: {l.titulo} | ISBN: {l.isbn} | Disponibles: {l.n_ejemplares}")
         else:
             print("No se encontraron libros de ese autor.")

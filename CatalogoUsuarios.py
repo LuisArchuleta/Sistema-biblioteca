@@ -1,9 +1,13 @@
 class catalogoUsuarios:
-    """Clase catalogoUsuarios: Para crear una coleccion de Usuarios
-    Input: recibe objetos tipo Usuario
-    outuput:None
+    """Clase catalogoUsuarios: Para crear un diccionario de Usuarios
+    Input: recibe id inicial y un diccionario.
+    outuput:
+            __len__: numero de elementos del diccionario
     Functions:
-            agregar: Esta funcion se utiliza para...
+            __init__: Funcion de inicio. recibe su propio objeto, id inicial y un diccionario.
+            agregar: Funcion para agregar objetos tipo usuario al diccionario, recibe su propio objeto y un objeto tipo usuario.
+            __len__: Funcion que devuelve el numero de elementos del diccionario, recibe su propio objeto.
+            mostrarUsuarios: Funcion que recorre el diccionario para imprimir los parametros id y nombre del objeto usuario, recibe su propio objeto.
     """
     
     def __init__(self,id,usuarios = {}):
@@ -11,7 +15,7 @@ class catalogoUsuarios:
         self.usuarios = usuarios
     
     def agregar(self,u):
-        self.usuarios[self.id]=u
+        self.usuarios[self.id]=u #Diccionario usuarios, id: usuario
         self.id+=1
         
         
@@ -19,6 +23,5 @@ class catalogoUsuarios:
         return len(self.usuarios)
     
     def mostrarUsuarios(self):
-        for usuario in self.usuarios.values():
-            print(usuario)
+        for usuario in self.usuarios.values(): #Recorre el diccionario usuarios.
             print(f"Id: {usuario.id} Nombre: {usuario.nombre}")
