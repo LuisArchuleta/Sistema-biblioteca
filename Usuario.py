@@ -4,4 +4,4 @@ class Usuario:
         self.nombre=nombre;
     
     def __str__(self):
-        return f"Usuario: {self.id} Nombre: {self.nombre}"
+        return f"Id: {self.id} Nombre: {self.nombre}"

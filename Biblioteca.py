@@ -1,5 +1,5 @@
 from CatalogoLibros import catalogoLibros 
-from libro import Libro
+from Libro import Libro
 from Usuario import Usuario
 from CatalogoUsuarios import catalogoUsuarios
 from GestionPrestamos import GestionPrestamos
@@ -48,29 +48,45 @@ Alta y gestion de libros
 ----------------------------
 1.-Registrar libro
 2.-Consultar disponibilidad
-3.-Buscar por titulo o autor
+3.-Buscar libro
 4.-Volver
 ----------------------------
         """)
         opcion=int(input("Opcion: "))
         match opcion:
             case 1:
-                crearLibros()
+                catalogoLibros.crearLibros(catalogolibros)
             case 2:
                 catalogoLibros.mostrarDisponibilidad(catalogolibros)
+            case 3:
+                menuBuscar()
             case 4:
                 break
             case _:
                 print("Opcion no valida")
             
 
-def crearLibros():
-  isbn = input("ISBN: ")
-  titulo = input("Titulo: ")
-  autor = input("Autor: ")
-  n_ejemplares = input("Numero de ejemplares: ")
-  libro = Libro(isbn,titulo,autor,n_ejemplares)
-  catalogolibros.agregar(libro)
+def menuBuscar():
+    while True:
+        print("""
+Buscar libro
+----------------------------
+1.-Por titulo
+2.-Por autor
+3.-Volver
+----------------------------
+    """)
+        opcion=int(input("Opcion:"))
+        match opcion:
+            case 1:
+                catalogoLibros.libros_por_titulo(catalogolibros)
+            case 2:
+                catalogoLibros.libros_por_autor(catalogolibros)
+            case 3:
+                break
+            case _:
+                print("Opcion no valida")
+            
 
 def menuUsuarios():
     while True:
@@ -147,26 +163,19 @@ Reportes y Consultas
         opcion=int(input("Opcion: "))
         match opcion:
             case 1:
-                tops = catalogoLibros.top3_libros()
+                tops = catalogoLibros.top_3_libros(catalogolibros)
                 for i, libro in enumerate(tops, 1):
                    print(f"{i}. {libro.titulo} ({libro.veces_prestado} veces)")
             case 2:
                 gestionPrestamos.mostrar_prestamos_activos()
             case 3: 
-                libros_por_autor()
+                catalogoLibros.libros_por_autor(catalogolibros)
             case 4:
                 break
             case _:
                 print("Opcion no valida")
 
-def libros_por_autor():
-    autor = input("\nEscriba el nombre del autor: ")
-    resultados = catalogolibros.buscar_por_autor(autor)
-    if resultados:
-        for l in resultados:
-            print(f"\nTítulo: {l.titulo} | ISBN: {l.isbn} | Disponibles: {l.n_ejemplares}")
-    else:
-        print("No se encontraron libros de ese autor.")
+
 
 if __name__ == "__main__":
     menu_principal()
