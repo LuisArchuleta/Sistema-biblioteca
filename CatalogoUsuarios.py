@@ -11,11 +11,10 @@ class catalogoUsuarios:
         self.usuarios = usuarios
     
     def agregar(self,u):
-        self.id+=1
         self.usuarios[self.id]=u
+        self.id+=1
         
         
-
     def __len__(self):
         return len(self.usuarios)
     
@@ -23,4 +22,3 @@ class catalogoUsuarios:
         for usuario in self.usuarios.values():
             print(usuario)
             print(f"Id: {usuario.id} Nombre: {usuario.nombre}")
-            

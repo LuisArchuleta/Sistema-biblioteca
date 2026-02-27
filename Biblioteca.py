@@ -8,7 +8,7 @@ libros={}
 catalogolibros=catalogoLibros(libros)
 
 usuarios={}
-catalogousuarios=catalogoUsuarios(0,usuarios)
+catalogousuarios=catalogoUsuarios(1,usuarios)
 
 gestionPrestamos = GestionPrestamos()
 
