@@ -11,13 +11,12 @@ class catalogoUsuarios:
     """
     
     def __init__(self,id,usuarios = {}):
-        self.id=id
+        self.id = id
         self.usuarios = usuarios
     
     def agregar(self,u):
         self.usuarios[self.id]=u #Diccionario usuarios, id: usuario
         self.id+=1
-        
         
     def __len__(self):
         return len(self.usuarios)
